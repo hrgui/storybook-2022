@@ -1,4 +1,5 @@
 import React from "react";
+import { expect } from "@storybook/jest";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { within, userEvent } from "@storybook/testing-library";
 import { Page } from "./Page";
@@ -30,4 +31,5 @@ LoggedIn.play = async ({ canvasElement }) => {
   const loginButton = await canvas.getByRole("button", { name: /Log in/i });
   await wait(5000);
   await userEvent.click(loginButton);
+  await expect(canvas.getByText("Jane Doe")).toBeInTheDocument();
 };
